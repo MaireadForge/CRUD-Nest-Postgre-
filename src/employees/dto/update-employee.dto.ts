@@ -1,4 +1,26 @@
-import { PartialType } from '@nestjs/mapped-types';
-import { CreateEmployeeDto } from './create-employee.dto';
+import {
+  IsEmail,
+  IsInt,
+  IsOptional,
+  IsString,
+  Min,
+} from 'class-validator';
 
-export class UpdateEmployeeDto extends PartialType(CreateEmployeeDto) {}
+export class UpdateEmployeeDto {
+  @IsOptional()
+  @IsString()
+  name?: string;
+
+  @IsOptional()
+  @IsEmail()
+  email?: string;
+
+  @IsOptional()
+  @IsString()
+  department?: string;
+
+  @IsOptional()
+  @IsInt()
+  @Min(0)
+  salary?: number;
+}
